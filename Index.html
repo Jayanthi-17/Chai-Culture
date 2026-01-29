@@ -50,7 +50,7 @@
             margin: 0 auto;
         }
 
-        /* LOGO STYLES - UPDATED FOR IMAGE LOGO */
+        /* LOGO STYLES */
         .logo-container {
             display: flex;
             align-items: center;
@@ -58,7 +58,7 @@
         }
 
         .logo-image {
-            height: 60px; /* Adjust based on your logo proportions */
+            height: 60px;
             width: auto;
         }
 
@@ -81,19 +81,18 @@
             margin-top: -5px;
         }
 
-        /* Alternative: If you want ONLY the image as logo (no text) */
-        .logo-image-only {
-            height: 70px;
-            width: auto;
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: block;
         }
 
-        nav ul {
+        .desktop-nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        nav a {
+        .desktop-nav a {
             color: var(--cream);
             text-decoration: none;
             font-weight: 600;
@@ -103,11 +102,11 @@
             transition: color 0.3s;
         }
 
-        nav a:hover {
+        .desktop-nav a:hover {
             color: var(--gold);
         }
 
-        nav a::after {
+        .desktop-nav a::after {
             content: '';
             position: absolute;
             width: 0;
@@ -118,101 +117,209 @@
             transition: width 0.3s;
         }
 
-        nav a:hover::after {
+        .desktop-nav a:hover::after {
             width: 100%;
         }
 
+        /* Mobile Menu Button - Positioned on the right */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             color: var(--cream);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            z-index: 1001;
+            padding: 0.5rem;
         }
 
-        /* Coming Soon Banner */
-        .coming-soon-banner {
-            background: linear-gradient(135deg, var(--brown) 0%, var(--light-brown) 100%);
-            color: var(--cream);
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 80px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
+        /* Mobile Navigation Menu - Right Side Panel */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden off-screen to the right */
+            width: 280px;
+            height: 100vh;
+            background-color: var(--brown);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            transition: right 0.4s ease-in-out;
+            z-index: 1002;
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
         }
 
-        .coming-soon-banner::before {
-            content: "";
-            position: absolute;
+        .mobile-nav.active {
+            right: 0; /* Slides in from right */
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(212, 175, 55, 0.1) 10px,
-                rgba(212, 175, 55, 0.1) 20px
-            );
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .coming-soon-banner h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+        .mobile-nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .mobile-nav li {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .mobile-nav li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav a:hover {
             color: var(--gold);
-            position: relative;
         }
 
-        .coming-soon-banner p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
+        /* Close button for mobile menu */
+        .mobile-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.8rem;
+            cursor: pointer;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(60, 47, 47, 0.8), rgba(60, 47, 47, 0.9)), url('https://images.unsplash.com/photo-1567336273898-ebbf9eb3c3bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        /* Large Coming Soon Banner */
+        .big-coming-soon {
+            background: linear-gradient(rgba(60, 47, 47, 0.9), rgba(91, 70, 54, 0.9)), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80');
             background-size: cover;
             background-position: center;
             color: var(--cream);
             text-align: center;
-            padding: 6rem 5%;
-            margin-bottom: 4rem;
+            padding: 8rem 5%;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        .big-coming-soon-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .big-coming-soon h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
             color: var(--gold);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
+        .big-coming-soon p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
         }
 
-        .hero-btn {
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .countdown-item {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-width: 100px;
+            backdrop-filter: blur(5px);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        .coming-soon-btn {
             display: inline-block;
             background-color: var(--gold);
             color: var(--brown);
-            padding: 0.9rem 2.5rem;
+            padding: 1.2rem 3rem;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             border: 2px solid var(--gold);
+            margin-top: 1rem;
         }
 
-        .hero-btn:hover {
+        .coming-soon-btn:hover {
             background-color: transparent;
             color: var(--gold);
+        }
+
+        /* Small Coming Soon Banner */
+        .small-coming-soon {
+            background: linear-gradient(135deg, var(--brown) 0%, var(--light-brown) 100%);
+            color: var(--cream);
+            text-align: center;
+            padding: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .small-coming-soon h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+            color: var(--gold);
+            position: relative;
+        }
+
+        .small-coming-soon p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
         }
 
         /* Products Section */
@@ -247,12 +354,16 @@
             gap: 2.5rem;
         }
 
+        /* Product Cards */
         .product-card {
             background-color: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .product-card:hover {
@@ -268,6 +379,7 @@
             justify-content: center;
             overflow: hidden;
             position: relative;
+            flex-shrink: 0;
         }
 
         .product-image img {
@@ -316,6 +428,9 @@
 
         .product-info {
             padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .product-name {
@@ -334,8 +449,10 @@
         .product-desc {
             color: var(--light-brown);
             margin-bottom: 1.2rem;
+            flex-grow: 1;
         }
 
+        /* Add to cart button at the bottom */
         .add-to-cart {
             background-color: var(--brown);
             color: white;
@@ -347,6 +464,7 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-top: auto;
         }
 
         .add-to-cart:hover {
@@ -442,48 +560,72 @@
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
-            nav ul {
-                position: fixed;
-                top: 80px;
-                left: 0;
-                background-color: var(--brown);
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                gap: 1.5rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                z-index: 999;
+            .desktop-nav {
+                display: none;
             }
 
-            nav ul.active {
-                transform: translateY(0);
-                opacity: 1;
+            .big-coming-soon {
+                padding: 5rem 5%;
+                margin-top: 70px;
             }
 
-            .hero h1 {
+            .big-coming-soon h1 {
                 font-size: 2.5rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .big-coming-soon p {
+                font-size: 1.2rem;
             }
 
-            .coming-soon-banner h2 {
-                font-size: 1.8rem;
+            .countdown {
+                flex-wrap: wrap;
+                gap: 1rem;
             }
-            
+
+            .countdown-item {
+                min-width: 80px;
+                padding: 1rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
             .logo-image {
-                height: 50px; /* Smaller on mobile */
+                height: 50px;
             }
             
             .brand-name {
                 font-size: 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .big-coming-soon h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.8rem;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-nav {
+                width: 250px;
             }
         }
 
@@ -522,21 +664,36 @@
     <header>
         <div class="header-container">
             <div class="logo-container">
-                <!-- OPTION 1: Logo Image with Text -->
+                <!-- Your Logo Here -->
                 <img src="Chai_Culture_Logo_Edited.jpg" alt="Chai Culture Logo" class="logo-image">
                 <div class="logo-text">
                     <div class="brand-name">CHAI CULTURE</div>
                     <div class="logo-tagline">Brew the Royal Tradition</div>
                 </div>
-                
             </div>
             
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile menu button - Positioned on the right -->
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             
-            <nav>
-                <ul id="navMenu">
+            <!-- Mobile Navigation Menu - Right Side Panel -->
+            <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+            <nav class="mobile-nav" id="mobileNav">
+                <button class="mobile-close-btn" id="mobileCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#shop">Shop</a></li>
                     <li><a href="#about">About</a></li>
@@ -546,17 +703,39 @@
         </div>
     </header>
 
-    <!-- Coming Soon Banner -->
-    <section class="coming-soon-banner">
-        <h2>Grand Opening Soon</h2>
-        <p>Our royal collection of authentic chai blends will be available for purchase in the coming weeks. Sign up for early access!</p>
+    <!-- Big Coming Soon Banner on Homepage -->
+    <section class="big-coming-soon" id="home">
+        <div class="big-coming-soon-content">
+            <h1>Grand Opening Soon</h1>
+            <p>We're brewing something extraordinary! Chai Culture is preparing to unveil our royal collection of authentic Indian chai blends. Experience centuries of tradition in every sip.</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">15</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <a href="#shop" class="coming-soon-btn">Preview Our Collection</a>
+        </div>
     </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Experience Royalty in Every Sip</h1>
-        <p>Chai Culture brings you the finest, handcrafted chai blends inspired by centuries of Indian heritage. Each blend is a celebration of tradition, warmth, and elegance.</p>
-        <a href="#shop" class="hero-btn">Explore Our Blends</a>
+    <!-- Small Coming Soon Banner -->
+    <section class="small-coming-soon">
+        <h3>Launching Soon</h3>
+        <p>Be the first to experience our royal chai blends. Sign up for exclusive early access and special offers.</p>
     </section>
 
     <!-- Products Section -->
@@ -614,10 +793,12 @@
     </section>
 
     <!-- About Section -->
-    <section class="hero" id="about" style="background: linear-gradient(rgba(60, 47, 47, 0.85), rgba(60, 47, 47, 0.9)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-        <h1>Our Story</h1>
-        <p>Chai Culture was born from a deep appreciation for India's rich tea heritage. Our founders traveled across the subcontinent, learning ancient recipes and techniques from master tea blenders. Each of our blends is crafted to transport you to a royal court, where chai was more than a beverage—it was an experience of warmth, connection, and tradition.</p>
-        <a href="#contact" class="hero-btn">Get In Touch</a>
+    <section class="big-coming-soon" id="about" style="background: linear-gradient(rgba(60, 47, 47, 0.85), rgba(60, 47, 47, 0.9)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="big-coming-soon-content">
+            <h1>Our Story</h1>
+            <p>Chai Culture was born from a deep appreciation for India's rich tea heritage. Our founders traveled across the subcontinent, learning ancient recipes and techniques from master tea blenders. Each of our blends is crafted to transport you to a royal court, where chai was more than a beverage—it was an experience of warmth, connection, and tradition.</p>
+            <a href="#contact" class="coming-soon-btn">Get In Touch</a>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -665,15 +846,32 @@
     </div>
 
     <script>
-        // Mobile Menu Toggle
+        // Mobile Navigation Toggle - Right Side Panel
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
         
+        // Open mobile menu
         mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+            mobileNav.classList.add('active');
+            mobileNavOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        mobileCloseBtn.addEventListener('click', closeMobileMenu);
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
 
         // Add to Cart Functionality
@@ -713,12 +911,6 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
-                // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-                
                 // Scroll to section
                 window.scrollTo({
                     top: targetElement.offsetTop - 100,
@@ -727,14 +919,58 @@
             });
         });
 
-        // Hero button scroll to shop
-        document.querySelector('.hero-btn').addEventListener('click', function(e) {
+        // REAL Countdown Timer for 15 days
+        function updateCountdown() {
+            // Set the launch date to exactly 15 days from now
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 15);
+            launchDate.setHours(0, 0, 0, 0); // Set to midnight
+            
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update display with leading zeros
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                document.querySelector(".countdown").innerHTML = "<h3 style='color: var(--gold); font-size: 2rem;'>We're Open!</h3>";
+            }
+        }
+        
+        // Initialize countdown and update every second
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        // Coming Soon button scroll to shop
+        document.querySelector('.coming-soon-btn').addEventListener('click', function(e) {
             e.preventDefault();
             const shopSection = document.getElementById('shop');
             window.scrollTo({
                 top: shopSection.offsetTop - 100,
                 behavior: 'smooth'
             });
+        });
+        
+        // Close mobile menu on window resize if switching to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
